@@ -3,7 +3,6 @@ defmodule Debug do
   Debugging functions for making life easier.
   """
 
-  @env Mix.env()
   @width 80
   @color 255
   @line_color 238
@@ -58,23 +57,21 @@ defmodule Debug do
   """
   @spec console(input :: any, opt :: keyword) :: any
   def console(input, opt \\ []) do
-    if @env in [:dev, :test] do
-      [
-        header(opt),
-        line(),
-        inspect(
-          input,
-          syntax_colors: Keyword.get(opt, :syntax_colors, @syntax_colors),
-          pretty: true,
-          width: Keyword.get(opt, :width, @width)
-        ),
-        line(),
-        footer(opt),
-        line()
-      ]
-      |> Enum.join()
-      |> IO.write()
-    end
+    [
+      header(opt),
+      line(),
+      inspect(
+        input,
+        syntax_colors: Keyword.get(opt, :syntax_colors, @syntax_colors),
+        pretty: true,
+        width: Keyword.get(opt, :width, @width)
+      ),
+      line(),
+      footer(opt),
+      line()
+    ]
+    |> Enum.join()
+    |> IO.write()
 
     input
   end

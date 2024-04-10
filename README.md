@@ -11,7 +11,7 @@ by adding `debug` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:debug, "~> 0.1.0"}
+    {:debug, "~> 0.1.0", only: :dev}
   ]
 end
 ```

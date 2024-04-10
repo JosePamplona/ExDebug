@@ -57,21 +57,23 @@ defmodule Debug do
   """
   @spec console(input :: any, opt :: keyword) :: any
   def console(input, opt \\ []) do
-    [
-      header(opt),
-      line(),
-      inspect(
-        input,
-        syntax_colors: Keyword.get(opt, :syntax_colors, @syntax_colors),
-        pretty: true,
-        width: Keyword.get(opt, :width, @width)
-      ),
-      line(),
-      footer(opt),
-      line()
-    ]
-    |> Enum.join()
-    |> IO.write()
+    if System.get_env("MIX_ENV") != "prod" do
+      [
+        header(opt),
+        line(),
+        inspect(
+          input,
+          syntax_colors: Keyword.get(opt, :syntax_colors, @syntax_colors),
+          pretty: true,
+          width: Keyword.get(opt, :width, @width)
+        ),
+        line(),
+        footer(opt),
+        line()
+      ]
+      |> Enum.join()
+      |> IO.write()
+    end
 
     input
   end

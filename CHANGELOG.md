@@ -14,13 +14,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-During development, milestones can be added to this section, and once finished working on them, it's only needed to adjust the title to include the version and date.
+### Added
 
-    TODO: change all refernces of the ./src in readme to be changed on setname function
-    TODO: add graphql files creation system
+- Configuration options through `config.ex` file instead compilation-time variables inside de module.
 
-## [0.0.0] - 0000-00-00
+## [0.1.0] - 2024-04-09
 
 ### Added
 
-- Lorem ipsum dolor sit amet.
+- The `Debug.console` function to print in console, only for `:test` and `:dev` enviroments.

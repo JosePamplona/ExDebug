@@ -3,22 +3,25 @@ defmodule Debug do
   Debugging functions for making life easier.
   """
 
-  @width 80
-  @color 255
-  @line_color 238
-  @time_color 247
+  @width Application.compile_env(:debug, :width) || 80
+  @color Application.compile_env(:debug, :label_color) || 255
+  @line_color Application.compile_env(:debug, :line_color) || 238
+  @time_color Application.compile_env(:debug, :time_color) || 247
+
+  config_colors = Application.compile_env(:debug, :syntax_colors) || []
+
   @syntax_colors [
-    atom: :cyan,
-    binary: :white,
-    boolean: :magenta,
-    list: :white,
-    map: :white,
-    nil: :magenta,
-    number: :yellow,
-    regex: :light_red,
-    reset: :yellow,
-    string: :green,
-    tuple: :white
+    atom:    config_colors[:atom]    || :cyan,
+    binary:  config_colors[:binary]  || :white,
+    boolean: config_colors[:boolean] || :magenta,
+    list:    config_colors[:list]    || :white,
+    map:     config_colors[:map]     || :white,
+    nil:     config_colors[:nil]     || :magenta,
+    number:  config_colors[:number]  || :yellow,
+    regex:   config_colors[:regex]   || :light_red,
+    reset:   config_colors[:reset]   || :yellow,
+    string:  config_colors[:string]  || :green,
+    tuple:   config_colors[:tuple]   || :white
   ]
 
   @doc """

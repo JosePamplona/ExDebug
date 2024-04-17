@@ -3,12 +3,6 @@ defmodule Debug do
   Debugging functions for making life easier.
   """
 
-  @width Application.compile_env(:debug, :width)
-  @color Application.compile_env(:debug, :label_color)
-  @line_color Application.compile_env(:debug, :line_color)
-  @time_color Application.compile_env(:debug, :time_color)
-  @syntax_colors Application.compile_env(:debug, :syntax_colors)
-
   @doc """
     Prints the `input` argument in console within a formatted frame.
 
@@ -45,18 +39,20 @@ defmodule Debug do
     """
   @spec console(input :: any, opt :: keyword) :: any
   def console(input, opt \\ []) do
+    conf = config()
+
     if env() in [:dev, :test] do
       [
-        header(opt),
+        header(conf, opt),
         line(),
         inspect(
           input,
-          syntax_colors: Keyword.get(opt, :syntax_colors, @syntax_colors),
+          syntax_colors: Keyword.get(opt, :syntax_colors, conf[:syntax_colors]),
           pretty: true,
-          width: Keyword.get(opt, :width, @width)
+          width: Keyword.get(opt, :width, conf[:width])
         ),
         line(),
-        footer(opt),
+        footer(conf, opt),
         line()
       ]
       |> Enum.join()
@@ -70,7 +66,7 @@ defmodule Debug do
 
   defp line(), do: "\n"
 
-  defp header(opt) when is_list(opt) do
+  defp header(conf, opt) when is_list(opt) do
     %{
       year: year,
       month: month,
@@ -82,10 +78,10 @@ defmodule Debug do
     } = NaiveDateTime.utc_now()
 
     label = Keyword.get(opt, :label)
-    width = Keyword.get(opt, :width, @width)
-    c0 = Keyword.get(opt, :color, "#{@color}")
-    c1 = Keyword.get(opt, :line_color, "#{@line_color}")
-    c2 = Keyword.get(opt, :time_color, "#{@time_color}")
+    width = Keyword.get(opt, :width, conf[:width])
+    c0 = Keyword.get(opt, :color, "#{conf[:label_color]}")
+    c1 = Keyword.get(opt, :line_color, "#{conf[:line_color]}")
+    c2 = Keyword.get(opt, :time_color, "#{conf[:time_color]}")
 
     date =
       "#{year}"
@@ -125,9 +121,9 @@ defmodule Debug do
     |> Kernel.<>(reset)
   end
 
-  defp footer(opt) when is_list(opt) do
-    width = Keyword.get(opt, :width, @width)
-    c1 = Keyword.get(opt, :line_color, "#{@line_color}")
+  defp footer(conf, opt) when is_list(opt) do
+    width = Keyword.get(opt, :width, conf[:width])
+    c1 = Keyword.get(opt, :line_color, "#{conf[:line_color]}")
     service = Mix.Project.config()[:app]
     version = Mix.Project.config()[:version]
 
@@ -148,4 +144,28 @@ defmodule Debug do
   end
 
   defp env, do: String.to_atom(System.get_env("MIX_ENV") || "dev")
+  defp config do
+    syntax_colors = Application.get_env(:debug, :syntax_colors)
+
+    [
+      width:      Application.get_env(:debug, :width)       || 80,
+      color:      Application.get_env(:debug, :label_color) || 255,
+      line_color: Application.get_env(:debug, :line_color)  || 238,
+      time_color: Application.get_env(:debug, :time_color)  || 247,
+      syntax_colors: [
+        atom:    syntax_colors[:atom]    || :cyan,
+        binary:  syntax_colors[:binary]  || :white,
+        boolean: syntax_colors[:boolean] || :magenta,
+        list:    syntax_colors[:list]    || :white,
+        map:     syntax_colors[:map]     || :white,
+        nil:     syntax_colors[:nil]     || :magenta,
+        number:  syntax_colors[:number]  || :yellow,
+        regex:   syntax_colors[:regex]   || :light_red,
+        reset:   syntax_colors[:reset]   || :yellow,
+        string:  syntax_colors[:string]  || :green,
+        tuple:   syntax_colors[:tuple]   || :white
+      ]
+    ]
+  end
+
 end

@@ -1,16 +1,19 @@
 defmodule Debug.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/JosePamplona/debug"
+  @version "0.1.0"
+
   def project, do: [
     app: :debug,
-    version: "0.1.0",
+    version: @version,
     elixir: "~> 1.14",
     start_permanent: Mix.env() == :prod,
     deps: deps(),
 
     # ExDocs documentation parameters
     name:       "Debug",
-    source_url: "https://github.com/JosePamplona/debug",
+    source_url: @source_url,
     # homepage_url: "http://YOUR_PROJECT_HOMEPAGE",
     docs: [
       authors: ["José Pamplona"],
@@ -36,7 +39,7 @@ defmodule Debug.MixProject do
     licenses: [""],
     
     # A map where the key is a link name and the value is the link URL. Optional but highly recommended.
-    links: %{"GitHub" => "https://github.com/JosePamplona/debug"}
+    links: %{"GitHub" => @source_url},
 
     # A list of files and directories to include in the package. Defaults to standard project directories, so you usually don't need to set this property.
     # files: ~w(lib priv .formatter.exs mix.exs README* readme* LICENSE*
@@ -44,6 +47,7 @@ defmodule Debug.MixProject do
 
     # List of build tools that can build the package. It's very rare that you need to set this, as Hex tries to automatically detect the build tools based on the files in the package. If a rebar or rebar.config file is present Hex will mark it as able to build with rebar. This detection can be overridden by setting this field.
     # build_tools: ""
+    maintainers: ["José Pamplona"]
   ]
 
   # Run "mix help compile.app" to learn about applications.

@@ -3,61 +3,46 @@ defmodule Debug do
   Debugging functions for making life easier.
   """
 
-  @width Application.compile_env(:debug, :width) || 80
-  @color Application.compile_env(:debug, :label_color) || 255
-  @line_color Application.compile_env(:debug, :line_color) || 238
-  @time_color Application.compile_env(:debug, :time_color) || 247
-
-  config_colors = Application.compile_env(:debug, :syntax_colors) || []
-
-  @syntax_colors [
-    atom:    config_colors[:atom]    || :cyan,
-    binary:  config_colors[:binary]  || :white,
-    boolean: config_colors[:boolean] || :magenta,
-    list:    config_colors[:list]    || :white,
-    map:     config_colors[:map]     || :white,
-    nil:     config_colors[:nil]     || :magenta,
-    number:  config_colors[:number]  || :yellow,
-    regex:   config_colors[:regex]   || :light_red,
-    reset:   config_colors[:reset]   || :yellow,
-    string:  config_colors[:string]  || :green,
-    tuple:   config_colors[:tuple]   || :white
-  ]
+  @width Application.compile_env(:debug, :width)
+  @color Application.compile_env(:debug, :label_color)
+  @line_color Application.compile_env(:debug, :line_color)
+  @time_color Application.compile_env(:debug, :time_color)
+  @syntax_colors Application.compile_env(:debug, :syntax_colors)
 
   @doc """
-  Prints the `input` argument in console within a formatted frame.
+    Prints the `input` argument in console within a formatted frame.
 
-  The function will always return the `input` argument as a passthrough. the given `input` term will only be printed in the console in **:dev** and **:test** environments, in any other environment (such as **:prod**), there will be no printing.
+    The function will always return the `input` argument as a passthrough. the given `input` term will only be printed in the console in **:dev** and **:test** environments, in any other environment (such as **:prod**), there will be no printing.
 
-  It can recieve a keyword list as options.
+    It can recieve a keyword list as options.
 
-  ## Options
-    * `label`: A string to print on the header for identification purposes.
-    * `color`: Color of the label if its given. Values between 0-255.
-    * `width`: Number of char width of the output.
-    * `line_color`: Color of the header and footer lines. Values between 0-255.
-    * `time_color`: Color of the execution time. Values between 0-255.
-    * `syntax_colors`: Keyword list for term syntax color.
-      
-      Keys: `:atom`, `:binary`, `:boolean`, `:list`, `:map`, `:nil`, `:number`, `:regex`, `:reset`, `:string`, `:tuple`.
-      
-      Values: `:black`, `:red`, `:yellow`, `:green`, `:cyan`, `:blue`, `:magenta`, `:white`, `:light_black`, `:light_red`, `:light_yellow`, `:light_green`, `:light_cyan`, `:light_blue`, `:light_magenta`, `:light_white`.
+    ## Options
+      * `label`: A string to print on the header for identification purposes.
+      * `color`: Color of the label if its given. Values between 0-255.
+      * `width`: Number of char width of the output.
+      * `line_color`: Color of the header and footer lines. Values between 0-255.
+      * `time_color`: Color of the execution time. Values between 0-255.
+      * `syntax_colors`: Keyword list for term syntax color.
+        
+        Keys: `:atom`, `:binary`, `:boolean`, `:list`, `:map`, `:nil`, `:number`, `:regex`, `:reset`, `:string`, `:tuple`.
+        
+        Values: `:black`, `:red`, `:yellow`, `:green`, `:cyan`, `:blue`, `:magenta`, `:white`, `:light_black`, `:light_red`, `:light_yellow`, `:light_green`, `:light_cyan`, `:light_blue`, `:light_magenta`, `:light_white`.
 
-  ### 256 color palette
+    ### 256 color palette
 
-  <img title="256 color palette" alt="palette image" src="assets/256_colors.png">
+    <img title="256 color palette" alt="palette image" src="assets/256_colors.png">
 
-  ##  Example
-      iex> "Lorem-Ipsum"
-      ...> |> String.split("-")
-      ...> |> Debug.console(label: "Split return")
-      ...> |> Enum.join()
-      ...> |> String.downcase()
-      Split return -------------------------------------- 2022-03-10 - 00:47:07.523741
-      ["Lorem", "Ipsum"]
-      ------------------------------------------------------------------- MyApp v0.0.0
-      "loremipsum" # <- This is the actual pipeline return, besides de console print.
-  """
+    ##  Example
+        iex> "Lorem-Ipsum"
+        ...> |> String.split("-")
+        ...> |> Debug.console(label: "Split return")
+        ...> |> Enum.join()
+        ...> |> String.downcase()
+        Split return -------------------------------------- 2022-03-10 - 00:47:07.523741
+        ["Lorem", "Ipsum"]
+        ------------------------------------------------------------------- MyApp v0.0.0
+        "loremipsum" # <- This is the actual pipeline return, besides de console print.
+    """
   @spec console(input :: any, opt :: keyword) :: any
   def console(input, opt \\ []) do
     if env() in [:dev, :test] do

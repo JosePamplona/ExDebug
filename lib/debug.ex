@@ -148,10 +148,10 @@ defmodule Debug do
     syntax_colors = Application.get_env(:debug, :syntax_colors) || []
 
     [
-      width:      Application.get_env(:debug, :width)       || 80,
-      color:      Application.get_env(:debug, :label_color) || 255,
-      line_color: Application.get_env(:debug, :line_color)  || 238,
-      time_color: Application.get_env(:debug, :time_color)  || 247,
+      width:      Application.get_env(:debug, :width)      || 80,
+      color:      Application.get_env(:debug, :color)      || 255,
+      line_color: Application.get_env(:debug, :line_color) || 238,
+      time_color: Application.get_env(:debug, :time_color) || 247,
       syntax_colors: [
         atom:    syntax_colors[:atom]    || :cyan,
         binary:  syntax_colors[:binary]  || :white,

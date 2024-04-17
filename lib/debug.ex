@@ -79,7 +79,7 @@ defmodule Debug do
 
     label = Keyword.get(opt, :label)
     width = Keyword.get(opt, :width, conf[:width])
-    c0 = Keyword.get(opt, :color, "#{conf[:label_color]}")
+    c0 = Keyword.get(opt, :color, "#{conf[:color]}")
     c1 = Keyword.get(opt, :line_color, "#{conf[:line_color]}")
     c2 = Keyword.get(opt, :time_color, "#{conf[:time_color]}")
 

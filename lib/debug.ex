@@ -22,9 +22,9 @@ defmodule Debug do
   ]
 
   @doc """
-  Prints `input` in console within a formatted frame.
+  Prints the `input` argument in console within a formatted frame.
 
-  Returs `input`.
+  The function will always return the `input` argument as a passthrough. the given `input` term will only be printed in the console in **:dev** and **:test** environments, in any other environment (such as **:prod**), there will be no printing.
 
   It can recieve a keyword list as options.
 
@@ -57,7 +57,7 @@ defmodule Debug do
   """
   @spec console(input :: any, opt :: keyword) :: any
   def console(input, opt \\ []) do
-    if System.get_env("MIX_ENV") != "prod" do
+    if env() in [:dev, :test] do
       [
         header(opt),
         line(),
@@ -158,4 +158,6 @@ defmodule Debug do
     |> Kernel.<>(sufix)
     |> Kernel.<>("\e[0m")
   end
+
+  defp env, do: String.to_atom(System.get_env("MIX_ENV") || "dev")
 end

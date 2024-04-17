@@ -12,7 +12,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `Fixed` for any bug fixes.
 - `Security` to invite users to upgrade in case of vulnerabilities.
 
-## [Unreleased]
+## [Unreleased] 0000-00-00
+
+### TODO
+
+- Configure the configuration parameters, to being able to modify them on config.ex
+- Add tests
+- Add LICENCE.md file
+- Add to HEXdocs registry (<https://hex.pm/docs/publish>)
 
 ### Added
 
@@ -22,4 +29,4 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
-- The `Debug.console` function to print in console, only for `:test` and `:dev` enviroments.
+- The `Debug.console\2` function prints any term into the console only in `:test` and `:dev` environments. It ignores any other environment and simply passes through the data.

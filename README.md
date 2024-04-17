@@ -1,7 +1,8 @@
 # Debug
+
 ![version - 0.1.0](https://img.shields.io/badge/version-0.1.0-white.svg?style=flat-sector&color=lightgray)
 
-**TODO: Add description**
+Elixir library with debugging functions for making life easier.
 
 ## Installation
 
@@ -11,7 +12,7 @@ by adding `debug` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:debug, "~> 0.1.0"}
+    {:debug, "~> 0.1.0", git: "https://github.com/JosePamplona/Debug.git"}
   ]
 end
 ```
@@ -19,4 +20,3 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/debug>.
-

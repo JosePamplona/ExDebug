@@ -39,9 +39,9 @@ defmodule Debug do
     """
   @spec console(input :: any, opt :: keyword) :: any
   def console(input, opt \\ []) do
-    conf = config()
-
     if env() in [:dev, :test] do
+      conf = config()
+
       [
         header(conf, opt),
         line(),
@@ -145,7 +145,7 @@ defmodule Debug do
 
   defp env, do: String.to_atom(System.get_env("MIX_ENV") || "dev")
   defp config do
-    syntax_colors = Application.get_env(:debug, :syntax_colors)
+    syntax_colors = Application.get_env(:debug, :syntax_colors) || []
 
     [
       width:      Application.get_env(:debug, :width)       || 80,

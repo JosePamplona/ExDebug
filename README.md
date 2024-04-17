@@ -20,3 +20,33 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/debug>.
+
+## Configuration
+
+Its posible to do some configuration in `config/config.exs`:
+
+```elixir
+config :debug,
+  width: 80,       # Lenght of characters to be used in the console print.
+  color: 255,      # Color of the label if its given. Values between 0-255.
+  line_color: 238, # Color of the header and footer lines. Values between 0-255.
+  time_color: 247, # Color of the execution time. Values between 0-255.
+  syntax_colors: [ # Keyword list for term syntax color.
+    atom:    :cyan,
+    binary:  :white,
+    boolean: :magenta,
+    list:    :white,
+    map:     :white,
+    nil:     :magenta,
+    number:  :yellow,
+    regex:   :light_red,
+    reset:   :yellow,
+    string:  :green,
+    tuple:   :white
+  ]
+
+  # Colors:
+  # :black, :red, :yellow, :green, :cyan, :blue, :magenta, :white,
+  # :light_black, :light_red, :light_yellow, :light_green, :light_cyan,
+  # :light_blue, :light_magenta, :light_white.
+```

@@ -16,17 +16,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### TODO
 
-- Configure the configuration parameters, to being able to modify them on config.ex
 - Add tests
 - Add LICENCE.md file
-- Add to HEXdocs registry (<https://hex.pm/docs/publish>)
 
 ### Added
 
-- Configuration options through `config.ex` file instead compilation-time variables inside de module.
+- Configuration options through `config/config.ex` file instead compilation-time variables inside de module.
 
 ## [0.1.0] - 2024-04-09
 
 ### Added
 
-- The `Debug.console\2` function prints any term into the console only in `:test` and `:dev` environments. It ignores any other environment and simply passes through the data.
+- The `Debug.console` function prints any term into the console only in `:test` and `:dev` environments. It ignores any other environment and simply passes through the data.

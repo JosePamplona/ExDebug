@@ -13,7 +13,7 @@ defmodule Debug do
     ## Options
       * `label`: A string to print on the header for identification purposes.
       * `color`: Color of the label if its given. Values between 0-255.
-      * `width`: Number of char width of the output.
+      * `width`: Lenght of characters to be used in the console print.
       * `line_color`: Color of the header and footer lines. Values between 0-255.
       * `time_color`: Color of the execution time. Values between 0-255.
       * `syntax_colors`: Keyword list for term syntax color.
@@ -32,9 +32,9 @@ defmodule Debug do
         ...> |> Debug.console(label: "Split return")
         ...> |> Enum.join()
         ...> |> String.downcase()
-        Split return -------------------------------------- 2022-03-10 - 00:47:07.523741
-        ["Lorem", "Ipsum"]
-        ------------------------------------------------------------------- MyApp v0.0.0
+        # Split return -------------------------------------- 2022-03-10 - 00:47:07.523741
+        # ["Lorem", "Ipsum"]
+        # ------------------------------------------------------------------- MyApp v0.0.0
         "loremipsum" # <- This is the actual pipeline return, besides de console print.
     """
   @spec console(input :: any, opt :: keyword) :: any

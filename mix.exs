@@ -2,7 +2,7 @@ defmodule Debug.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/JosePamplona/debug"
-  @version "0.1.0"
+  @version "0.2.0"
 
   def project, do: [
     app: :debug,
@@ -20,7 +20,10 @@ defmodule Debug.MixProject do
       main:    "Debug",
       logo:    "assets/logo.png",
       assets:  "assets",
-      extras:  ["README.md": [title: "Debug"]]
+      extras:  [
+        "README.md": [title: "Getting Started"],
+        "CHANGELOG.md": [title: "Changelog"]
+      ]
     ],
 
     # Hexdocs package metadata
@@ -34,11 +37,11 @@ defmodule Debug.MixProject do
     # The organization the package belongs to. The package will be published to the organization repository, defaults to the global "hexpm" repository.
     # organization: "",
     # A list of licenses the project is licensed under. This attribute is required. It is recommended to use SPDX License identifier.
-    licenses: [""],
+    licenses: ["MIT License"],
     # A map where the key is a link name and the value is the link URL. Optional but highly recommended.
     links: %{"GitHub" => @source_url},
     # A list of files and directories to include in the package. Defaults to standard project directories, so you usually don't need to set this property.
-    files: ~w(lib .formatter.exs mix.exs README.md LICENSE.md CHANGELOG.md src),
+    files: ~w(lib mix.exs README.md LICENSE CHANGELOG.md src),
     # List of build tools that can build the package. It's very rare that you need to set this, as Hex tries to automatically detect the build tools based on the files in the package. If a rebar or rebar.config file is present Hex will mark it as able to build with rebar. This detection can be overridden by setting this field.
     # build_tools: ""
     maintainers: ["José Pamplona"]
@@ -50,6 +53,7 @@ defmodule Debug.MixProject do
   ]
 
   defp deps, do: [
-    {:ex_doc, "~> 0.31", only: :dev, runtime: false}
+    {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+    {:mock,"~> 0.3", only: :test},
   ]
 end

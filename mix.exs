@@ -17,7 +17,7 @@ defmodule ExDebug.MixProject do
     # homepage_url: "http://YOUR_PROJECT_HOMEPAGE",
     docs: [
       authors: ["José Pamplona"],
-      main:    "README",
+      main:    "readme",
       logo:    "assets/logo.png",
       assets:  "assets",
       extras:  [

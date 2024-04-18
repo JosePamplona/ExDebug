@@ -26,6 +26,3 @@ debug-*.tar
 /tmp/
 
 mix.lock
-
-assets/icon.svg
-assets/logo.700.png

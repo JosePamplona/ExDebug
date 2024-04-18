@@ -12,14 +12,14 @@ The package can be installed by adding `debug` to your list of dependencies in `
 ```elixir
 def deps do
   [
-    {:debug, "~> 0.2.0", git: "https://github.com/JosePamplona/Debug.git"}
+    {:debug, "~> 0.2", git: "https://github.com/JosePamplona/Debug.git"}
   ]
 end
 ```
 
 ## Configuration
 
-Its posible to configure the library behaviour in `config/config.exs` file:
+When using the `Debug.console\2` function, it's possible to pass some formatting options to the function. There is a configuration in `config/config.exs` file that can be adjusted to set these options globally:
 
 ```elixir
 # config/config.exs file
@@ -59,3 +59,25 @@ config :debug,
 ### 256 color palette
 
 <img title="256 color palette" alt="palette image" src="assets/256_colors.png">
+
+## Use
+
+### Debug.console
+
+Use the `Debug.console\2` function chaining it anywhere in your functions pipelines, to print in console the current data on that point of the pipeline.
+
+This behavior is only present in the `:dev` and `:test` environments. If it's called in the `:prod` environment, it will simply ignore the command and pass through the data.
+
+#### Example
+
+```elixir
+iex> "Lorem-Ipsum"
+...> |> String.split("-")
+...> |> Debug.console(label: "Split return")
+...> |> Enum.join()
+...> |> String.downcase()
+# Split return -------------------------------------- 2022-03-10 - 00:47:07.523741
+# ["Lorem", "Ipsum"]
+# ------------------------------------------------------------------- MyApp v0.0.0
+"loremipsum" # <- This is the actual pipeline return, besides de console print.
+```

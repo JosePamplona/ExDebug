@@ -1,6 +1,12 @@
 <!-- markdownlint-disable MD024 -->
 # Changelog
 
+## v1.0.0 (2021-04-17)
+
+### Changed
+
+- Project name changed from `Debug` to `ExDebug` due previous library in existance in hexdocs.
+
 ## v0.2.0 (2021-04-17)
 
 ### Added

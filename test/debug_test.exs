@@ -1,6 +1,6 @@
-defmodule DebugTest do
+defmodule ExDebugTest do
   use ExUnit.Case
-  doctest Debug
+  doctest ExDebug
 
   import ExUnit.CaptureIO
   import Mock
@@ -14,10 +14,10 @@ defmodule DebugTest do
         [
           "--------------------------------------------------- " <> _datetime,
           "{:ok, \"some value\"}",
-          "------------------------------------------------------------------- " <> _app_version,
+          "----------------------------------------------------------------- " <> _app_version,
           ""
         ]
-      } = fn -> Debug.console(input) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(input) end |> with_io() |> format_capture()
     end
     
     test "The return is a passtrhough of the input term." do
@@ -35,69 +35,69 @@ defmodule DebugTest do
       assert {
         ^atom,
         [_header, ":atom", _footer, ""]
-      } = fn -> Debug.console(atom) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(atom) end |> with_io() |> format_capture()
       
       assert {
         ^binary,
         [_header, "<<1, 2, 3>>", _footer, ""]
-      } = fn -> Debug.console(binary) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(binary) end |> with_io() |> format_capture()
       
       assert {
         ^boolean,
         [_header, "true", _footer, ""]
-      } = fn -> Debug.console(boolean) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(boolean) end |> with_io() |> format_capture()
       
       assert {
         ^list,
         [_header, "[1, 2, 3]", _footer, ""]
-      } = fn -> Debug.console(list) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(list) end |> with_io() |> format_capture()
       
       assert {
         ^map,
         [_header, "%{a: \"1\"}", _footer, ""]
-      } = fn -> Debug.console(map) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(map) end |> with_io() |> format_capture()
       
       assert {
         ^null,
         [_header, "nil", _footer, ""]
-      } = fn -> Debug.console(null) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(null) end |> with_io() |> format_capture()
       
       assert {
         ^number,
         [_header, "123", _footer, ""]
-      } = fn -> Debug.console(number) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(number) end |> with_io() |> format_capture()
       
       assert {
         ^regex,
         [_header, "~r/^regex$/", _footer, ""]
-      } = fn -> Debug.console(regex) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(regex) end |> with_io() |> format_capture()
       
       assert {
         ^string,
         [_header, "\"string\"", _footer, ""]
-      } = fn -> Debug.console(string) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(string) end |> with_io() |> format_capture()
       
       assert {
         ^tuple,
         [_header, "{:ok, 1}", _footer, ""]
-      } = fn -> Debug.console(tuple) end |> with_io() |> format_capture()
+      } = fn -> ExDebug.console(tuple) end |> with_io() |> format_capture()
     end
     
     test "Configure the :width parameter in config.ex file." do
-      prev_value = Application.get_env(:debug, :width)
-      Application.put_env(:debug, :width, 40)
+      prev_value = Application.get_env(:ex_debug, :width)
+      Application.put_env(:ex_debug, :width, 40)
 
       input = {:ok, "some value"}
-      result = fn -> Debug.console(input) end |> with_io() |> format_capture()
+      result = fn -> ExDebug.console(input) end |> with_io() |> format_capture()
 
-      Application.put_env(:debug, :width, prev_value)
+      Application.put_env(:ex_debug, :width, prev_value)
 
       assert {
         ^input,
         [
           "----------- " <> _datetime,
           "{:ok, \"some value\"}",
-          "--------------------------- " <> _app_version,
+          "------------------------- " <> _app_version,
           ""
         ]
       } = result
@@ -111,11 +111,11 @@ defmodule DebugTest do
         [
           "----------- " <> _datetime,
           "{:ok, \"some value\"}",
-          "--------------------------- " <> _app_version,
+          "------------------------- " <> _app_version,
           ""
         ]
       } = fn ->
-            Debug.console(input, width: 40)
+            ExDebug.console(input, width: 40)
           end
           |> with_io()
           |> format_capture()
@@ -129,11 +129,11 @@ defmodule DebugTest do
         [
           "Process 01 ---------------------------------------- " <> _datetime,
           "{:ok, \"some value\"}",
-          "------------------------------------------------------------------- " <> _app_version,
+          "----------------------------------------------------------------- " <> _app_version,
           ""
         ]
       } = fn ->
-            Debug.console(input, label: "Process 01")
+            ExDebug.console(input, label: "Process 01")
           end
           |> with_io()
           |> format_capture()
@@ -149,7 +149,7 @@ defmodule DebugTest do
         assert {
           ^input,
           [""]
-        } = fn -> Debug.console(input) end |> with_io() |> format_capture()
+        } = fn -> ExDebug.console(input) end |> with_io() |> format_capture()
       end
     end
   end

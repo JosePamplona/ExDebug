@@ -1,30 +1,35 @@
 <!-- markdownlint-disable MD033 -->
-# Debug
+# ExDebug
 
-![version - 0.2.0](https://img.shields.io/badge/version-0.2.0-white.svg?style=flat-sector&color=lightgray)
+![version - 1.0.0](https://img.shields.io/badge/version-1.0.0-white.svg?style=flat-sector&color=lightgray)
 
 Elixir library with debugging functions for making life easier.
 
 ## Installation
 
-The package can be installed by adding `debug` to your list of dependencies in `mix.exs`:
+The package can be installed
+by adding `ex_debug` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:debug, "~> 0.2", git: "https://github.com/JosePamplona/Debug.git"}
+    {:ex_debug, "~> 1.0.0"}
   ]
 end
 ```
 
+Documentation generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
+and published on [HexDocs](https://hexdocs.pm).
+The docs can be found at: <https://hexdocs.pm/ex_debug>.
+
 ## Configuration
 
-When using the `Debug.console\2` function, it's possible to pass some formatting options to the function. There is a configuration in `config/config.exs` file that can be adjusted to set these options globally:
+When using the `ExDebug.console\2` function, it's possible to pass some formatting options to the function. There is a configuration in `config/config.exs` file that can be adjusted to set these options globally:
 
 ```elixir
 # config/config.exs file
 
-config :debug,
+config :ex_debug,
   width: 80,
   color: 255,
   line_color: 238,
@@ -62,18 +67,18 @@ config :debug,
 
 ## Use
 
-### Debug.console
+### ExDebug.console
 
-Use the `Debug.console\2` function chaining it anywhere in your functions pipelines, to print in console the current data on that point of the pipeline.
+Use the `ExDebug.console\2` function chaining it anywhere in your functions pipelines, to print in console the current data on that point of the pipeline.
 
-This behavior is only present in the `:dev` and `:test` environments. If it's called in the `:prod` environment, it will simply ignore the command and pass through the data.
+This behavior is only present in the `:dev` and `:test` environments. If it's called in the `:prod` (or any other) environment, it will simply ignore the command and pass through the data.
 
 #### Example
 
 ```elixir
 iex> "Lorem-Ipsum"
 ...> |> String.split("-")
-...> |> Debug.console(label: "Split return")
+...> |> ExDebug.console(label: "Split return")
 ...> |> Enum.join()
 ...> |> String.downcase()
 # Split return -------------------------------------- 2022-03-10 - 00:47:07.523741

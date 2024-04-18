@@ -1,23 +1,23 @@
-defmodule Debug.MixProject do
+defmodule ExDebug.MixProject do
   use Mix.Project
 
-  @source_url "https://github.com/JosePamplona/debug"
-  @version "0.2.0"
+  @source_url "https://github.com/JosePamplona/ex_debug"
+  @version "1.0.0"
 
   def project, do: [
-    app: :debug,
+    app: :ex_debug,
     version: @version,
     elixir: "~> 1.14",
     start_permanent: Mix.env() == :prod,
     deps: deps(),
 
     # ExDocs documentation parameters
-    name:       "Debug",
+    name:       "ExDebug",
     source_url: @source_url,
     # homepage_url: "http://YOUR_PROJECT_HOMEPAGE",
     docs: [
       authors: ["José Pamplona"],
-      main:    "Debug",
+      main:    "ExDebug",
       logo:    "assets/logo.png",
       assets:  "assets",
       extras:  [

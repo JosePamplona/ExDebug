@@ -1,4 +1,4 @@
-defmodule Debug do
+defmodule ExDebug do
   @moduledoc """
   Debugging functions for making life easier.
   """
@@ -29,7 +29,7 @@ defmodule Debug do
     ##  Example
         iex> "Lorem-Ipsum"
         ...> |> String.split("-")
-        ...> |> Debug.console(label: "Split return")
+        ...> |> ExDebug.console(label: "Split return")
         ...> |> Enum.join()
         ...> |> String.downcase()
         # Split return -------------------------------------- 2022-03-10 - 00:47:07.523741
@@ -145,13 +145,13 @@ defmodule Debug do
 
   defp env, do: String.to_atom(System.get_env("MIX_ENV") || "dev")
   defp config do
-    syntax_colors = Application.get_env(:debug, :syntax_colors) || []
+    syntax_colors = Application.get_env(:ex_debug, :syntax_colors) || []
 
     [
-      width:      Application.get_env(:debug, :width)      || 80,
-      color:      Application.get_env(:debug, :color)      || 255,
-      line_color: Application.get_env(:debug, :line_color) || 238,
-      time_color: Application.get_env(:debug, :time_color) || 247,
+      width:      Application.get_env(:ex_debug, :width)      || 80,
+      color:      Application.get_env(:ex_debug, :color)      || 255,
+      line_color: Application.get_env(:ex_debug, :line_color) || 238,
+      time_color: Application.get_env(:ex_debug, :time_color) || 247,
       syntax_colors: [
         atom:    syntax_colors[:atom]    || :cyan,
         binary:  syntax_colors[:binary]  || :white,

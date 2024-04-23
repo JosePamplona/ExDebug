@@ -18,9 +18,8 @@ def deps do
 end
 ```
 
-Documentation generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm).
-The docs can be found at: <https://hexdocs.pm/ex_debug/>.
+> Documentation generated with [ExDoc](https://github.com/elixir-lang/ex_doc) and published on [HexDocs](https://hexdocs.pm).<br/>
+> The docs can be found at: <https://hexdocs.pm/ex_debug/>.
 
 ## Configuration
 
@@ -65,13 +64,15 @@ config :ex_debug,
 
 <img title="256 color palette" alt="palette image" src="assets/256_colors.png">
 
-## Use
+## Usage
 
 ### ExDebug.console
 
 Use the `ExDebug.console\2` function chaining it anywhere in your functions pipelines, to print in console the current data on that point of the pipeline.
 
-This behavior is only present in the `:dev` and `:test` environments. If it's called in the `:prod` (or any other) environment, it will simply ignore the command and pass through the data.
+This behavior is only present in the **dev** and **test** environments. If it's called in the **prod** (or any other) environment, it will simply ignore the command and pass through the data.
+
+The second argument of the function is optional. It's a keyword list of options: `:width`, `:color`, `:line_color`, `:time_color`, `:syntax_colors`.
 
 #### Example
 

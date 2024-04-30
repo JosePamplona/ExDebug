@@ -1,9 +1,21 @@
 <!-- markdownlint-disable MD033 -->
 # ExDebug
 
-![version - 1.0.0](https://img.shields.io/badge/version-1.0.0-white.svg?style=flat-sector&color=lightgray)
+[![Module Version](https://img.shields.io/hexpm/v/ex_debug.svg)](https://hex.pm/packages/ex_debug)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg?color=698fbd)](https://hexdocs.pm/ex_debug/)
+[![Total Download](https://img.shields.io/hexpm/dt/ex_debug.svg)](https://hex.pm/packages/ex_debug)
+[![License](https://img.shields.io/github/license/JosePamplona/ExDebug)](https://github.com/JosePamplona/ExDebug/blob/main/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/JosePamplona/ExDebug.svg)](https://github.com/JosePamplona/ExDebug/commits/main)
 
 Elixir library with debugging functions for making life easier.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [ExDebug.console](#exdebugconsole)
+- [Development](#development)
 
 ## Installation
 
@@ -17,9 +29,6 @@ def deps do
   ]
 end
 ```
-
-> Documentation generated with [ExDoc](https://github.com/elixir-lang/ex_doc) and published on [HexDocs](https://hexdocs.pm).<br/>
-> The docs can be found at: <https://hexdocs.pm/ex_debug/>.
 
 ## Configuration
 
@@ -47,8 +56,6 @@ config :ex_debug,
     tuple:   :white
   ]
 ```
-
-### Configuration parameters
 
 - **width**: Lenght of characters to be used in the console print.
 - **color**: Color of the label if its given. Values between 0-255.
@@ -86,4 +93,12 @@ iex> "Lorem-Ipsum"
 # ["Lorem", "Ipsum"]
 # ------------------------------------------------------------------- MyApp v0.0.0
 "loremipsum" # <- This is the actual pipeline return, besides de console print.
+```
+
+## Development
+
+The test suite can be executed as follows:
+
+```sh
+mix test
 ```

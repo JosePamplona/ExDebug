@@ -21,7 +21,8 @@ defmodule ExDebug.MixProject do
       logo:    "assets/logo.png",
       assets:  "assets",
       extras:  [
-        "README.md": [title: "Getting Started"],
+        "README.md": [title: "Overview"],
+        "LICENSE.md": [title: "License"],
         "CHANGELOG.md": [title: "Changelog"]
       ]
     ],
@@ -41,7 +42,7 @@ defmodule ExDebug.MixProject do
     # A map where the key is a link name and the value is the link URL. Optional but highly recommended.
     links: %{"GitHub" => @source_url},
     # A list of files and directories to include in the package. Defaults to standard project directories, so you usually don't need to set this property.
-    files: ~w(lib mix.exs README.md LICENSE CHANGELOG.md),
+    files: ~w(lib mix.exs README.md LICENSE.md CHANGELOG.md),
     # List of build tools that can build the package. It's very rare that you need to set this, as Hex tries to automatically detect the build tools based on the files in the package. If a rebar or rebar.config file is present Hex will mark it as able to build with rebar. This detection can be overridden by setting this field.
     # build_tools: ""
     maintainers: ["José Pamplona"]
